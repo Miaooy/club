@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Login</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/info">Info</router-link>
+      <router-link to="/info">Info</router-link> |
+      <router-link to="/home">Home</router-link> |
     </div>
     <router-view/>
   </div>
@@ -11,7 +12,6 @@
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,5 +27,9 @@
       color: #42b983;
     }
   }
+}
+* {
+  padding: 0;
+  margin: 0;
 }
 </style>
