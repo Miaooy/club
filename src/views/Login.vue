@@ -40,6 +40,7 @@ export default {
         this.name = '';
         this.$router.push('/home/list');
       } else {
+        // eslint-disable-next-line no-alert
         alert('用户名密码错误');
       }
     },
@@ -58,6 +59,7 @@ export default {
         this.repeat = '';
         this.isReg = false;
       } else {
+        // eslint-disable-next-line no-alert
         alert('密码输入不一致');
       }
     },
