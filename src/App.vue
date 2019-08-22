@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
+<!--    <div id="nav">-->
 <!--      <router-link to="/">Login</router-link> |-->
 <!--      <router-link to="/about">About</router-link> |-->
 <!--      <router-link to="/info">Info</router-link> |-->
 <!--      <router-link to="/home">Home</router-link> |-->
-    </div>
+<!--    </div>-->
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+};
+</script>
 <style lang="scss">
 /*#app {*/
 /*  font-family: 'Avenir', Helvetica, Arial, sans-serif;*/

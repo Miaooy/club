@@ -1,72 +1,74 @@
 <template>
-  <div>
-    <form action="" v-if="!isReg">
-      用户名:
-      <input type="text" v-model="name">
-      密码:
-      <input type="password" v-model="password">
-      <button type="button" v-on:click="login()">登录</button>
-      <button type="button" v-on:click="reg()">注册</button>
-    </form>
-    <form action="" v-else>
-      用户名:
-      <input type="text" v-model="name">
-      密码:
-      <input type="password" v-model="password">
-      再次输入密码:
-      <input type="password" v-model="repeat">
-      <button type="button" v-on:click="addUser()">确定</button>
-      <button type="button" v-on:click="cancel()">取消</button>
-    </form>
-
+  <div class="login">
+    <a-form id="components-form-demo-normal-login" :form="form"
+            class="login-form" @submit="handleSubmit">
+      <a-form-item>
+        <a-input v-decorator="['userName',
+          { rules: [{ required: true, message: 'Please input your username!' }] }
+        ]" placeholder="Username">
+          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input v-decorator="['password',
+          { rules: [{ required: true, message: 'Please input your Password!' }] }
+        ]" type="password" placeholder="Password">
+          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)"/>
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-checkbox v-decorator="['remember',{valuePropName: 'checked',initialValue: true,}]">
+          Remember me
+        </a-checkbox>
+        <a class="login-form-forgot" href="">
+          Forgot password
+        </a>
+        <a-button type="primary" html-type="submit" class="login-form-button">
+          Log in
+        </a-button>
+        Or <a href="">register now!</a>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Login',
-  data() {
-    return {
-      isReg: false,
-      name: '',
-      password: '',
-      repeat: '',
-    };
+  beforeCreate() {
+    this.form = this.$form.createForm(this);
   },
   methods: {
-    login() {
-      if (localStorage.getItem('name') === this.name && localStorage.getItem('password') === this.password) {
-        this.password = '';
-        this.name = '';
-        this.$router.push('/home/list');
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('用户名密码错误');
-      }
-    },
-    reg() {
-      this.isReg = true;
-    },
-    cancel() {
-      this.isReg = false;
-    },
-    addUser() {
-      if (this.password === this.repeat) {
-        localStorage.setItem('name', this.name);
-        localStorage.setItem('password', this.password);
-        this.password = '';
-        this.name = '';
-        this.repeat = '';
-        this.isReg = false;
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('密码输入不一致');
-      }
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+          this.$router.push('/layout/book-card');
+        } else {
+          console.log('123');
+        }
+      });
     },
   },
 };
 </script>
 
 <style scoped>
-
+  .login{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    position: relative;
+    top: 250px;
+  }
+  #components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    float: right;
+  }
+  #components-form-demo-normal-login .login-form-button {
+    width: 100%;
+  }
 </style>

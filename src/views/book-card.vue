@@ -168,6 +168,7 @@ export default {
     margin-bottom: 20px;
     width: 23.2%;
     min-width: 273px;
+    max-width: 342px;
     border-radius: 2px;
   }
   .progress {
