@@ -6,6 +6,7 @@ import Login from './views/Login.vue';
 import Detail from './views/Detail.vue';
 import Add from './views/Add.vue';
 import Layout from './views/Layout.vue';
+import Home from './views/Home.vue';
 
 Vue.use(Router);
 
@@ -14,23 +15,23 @@ export default new Router({
   base: process.env.BASE_URL,
   linkActiveClass: 'active',
   routes: [
-    // {
-    //   path: '/home',
-    //   name: 'home',
-    //   component: Home,
-    //   children: [
-    //     {
-    //       path: 'list',
-    //       name: 'list',
-    //       component: () => import(/* webpackChunkName: "list" */ './views/List.vue'),
-    //     },
-    //     {
-    //       path: 'user',
-    //       name: 'user',
-    //       component: () => import(/* webpackChunkName: "user" */ './views/User.vue'),
-    //     },
-    //   ],
-    // },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
+      children: [
+        {
+          path: 'list',
+          name: 'list',
+          component: () => import(/* webpackChunkName: "list" */ './views/List.vue'),
+        },
+        {
+          path: 'user',
+          name: 'user',
+          component: () => import(/* webpackChunkName: "user" */ './views/User.vue'),
+        },
+      ],
+    },
     {
       path: '/info',
       name: 'info',
@@ -57,21 +58,14 @@ export default new Router({
       component: Layout,
       children: [
         {
-          path: 'home',
-          name: 'home',
-          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
-          children: [
-            {
-              path: 'list',
-              name: 'list',
-              component: () => import(/* webpackChunkName: "list" */ './views/List.vue'),
-            },
-            {
-              path: 'user',
-              name: 'user',
-              component: () => import(/* webpackChunkName: "user" */ './views/User.vue'),
-            },
-          ],
+          path: 'book-card',
+          name: 'book-card',
+          component: () => import(/* webpackChunkName: "book-card" */ './views/book-card.vue'),
+        },
+        {
+          path: 'week-report',
+          name: 'week-report',
+          component: () => import(/* webpackChunkName: "book-card" */ './views/week-report.vue'),
         },
       ],
     },
